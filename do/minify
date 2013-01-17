@@ -1,3 +1,4 @@
 #!/bin/bash
-/usr/bin/env uglifyjs src/sanchez.js >> bin/sanchez.min.js
+/usr/bin/env uglifyjs src/sanchez.js > bin/sanchez.min.js
+ls -al bin
 
