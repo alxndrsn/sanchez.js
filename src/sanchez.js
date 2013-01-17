@@ -8,7 +8,7 @@ sanchez = (function() {
 			raw = raw.replace(reg(k), replacements[k]);
 		}
 		return raw;
-	}
+	};
 	replaceContent = function(targetSelecter, name, replacement) {
 		$(targetSelecter).html(template(name, replacement));
 	};
