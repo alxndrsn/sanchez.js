@@ -26,7 +26,7 @@ sanchez = (function() {
 		template:template,
 		append:function(a,b,c) { jq("append", a, b, c); },
 		prepend:function(a,b,c) { jq("prepend", a, b, c); },
-		replaceWith:function(a,b,c) { jq("replaceWith", a, b, c); },
+		replace:function(a,b,c) { jq("replaceWith", a, b, c); },
 		replaceContent:function(a,b,c) { jq("html", a, b, c); }
 	};
 }());
