@@ -10,7 +10,8 @@
 			<button onclick="showTemplate('greeter', {name:'Bob'})" class="greeter">Show Greeting</button>
 			<button onclick="showTemplate('templating-fw', {name:'Mustache', features:'many', size:'5k'})" class="greeter">Show Mustache Info</button>
 			<button onclick="showTemplate('templating-fw', {name:'Handlebars', features:'many', size:'34k'})" class="greeter">Show Handlebars Info</button>
-			<button onclick="showTemplate('templating-fw', {name:'Sanchez', features:'only one!', size:'438b'})" class="greeter">Show Sanchez Info</button>
+			<button onclick="showTemplate('templating-fw', {name:'Sanchez', features:'only one!', size:'581b'})" class="greeter">Show Sanchez Info</button>
+			<button onclick="showTemplate('dereference', {continent:'Africa', stats:{pop:'1,032,532,974', area:'30,221,532 km2'}})" class="greeter">Show Africa Info</button>
 			<div id="target">Examples will be updated here...</div>
 		</div>
 
@@ -27,6 +28,14 @@
 					<tr><td>Size (minified)</td><td>{{size}}</td></tr>
 				</tbody>
 			</table>
+		</script>
+
+		<script id="dereference" type="text/x-sanchez-template">
+			<h1>{{continent}}</h1>
+			<dl>
+				<dt>Population</dt><dd>{{stats.pop}}</dd>
+				<dt>Area</dt><dd>{{stats.area}}</dd>
+			</dl>
 		</script>
 
 		<script type="text/javascript">

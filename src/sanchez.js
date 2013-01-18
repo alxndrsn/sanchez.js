@@ -1,16 +1,26 @@
 sanchez = (function() {
 	var
+	R = RegExp,
+	ESCAPE_PERIODS = new R("\\.", "g"),
 	jq = function(methodName, targetSelecter, templateName, replacement) {
 		$(targetSelecter)[methodName](template(templateName, replacement));
 	},
-	reg = function(k) { return new RegExp("((%7B%7B)|(\\{\\{))" + k + "((%7D%7D)|(\\}\\}))", "g"); },
-	template = function(templateName, replacements) {
-		var k, raw;
-		raw = $("#" + templateName).html();
-		for(k in replacements) {
-			raw = raw.replace(reg(k), replacements[k]);
+	reg = function(k) { return new R("((%7B%7B)|(\\{\\{))" + k.replace(ESCAPE_PERIODS, "\\.") + "((%7D%7D)|(\\}\\}))", "g"); },
+	process = function(raw, key, value) {
+		if(typeof(value) === "object") {
+			return processObject(raw, key, value);
+		}
+		return raw.replace(reg(key), value);
+	},
+	processObject = function(raw, key, value) {
+		var k;
+		for(k in value) {
+			raw = process(raw, key? key + "." + k: k, value[k]);
 		}
 		return raw;
+	},
+	template = function(templateName, replacements) {
+		return process($("#" + templateName).html(), "", replacements);
 	};
 	return {
 		template:template,
