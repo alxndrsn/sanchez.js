@@ -4,9 +4,9 @@ sanchez = (function() {
 		$(targetSelecter)[methodName](template(templateName, replacement));
 	},
 	reg = function(k) { return new RegExp("((%7B%7B)|(\\{\\{))" + k + "((%7D%7D)|(\\}\\}))", "g"); },
-	template = function(templateName, replacements) {
-		var k, raw;
-		raw = $("#" + templateName).html();
+	/** args: k is `templateName` until reuse */
+	template = function(k, replacements) {
+		var raw = $("#" + k).html();
 		for(k in replacements) {
 			raw = raw.replace(reg(k), replacements[k]);
 		}
