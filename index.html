@@ -2,18 +2,90 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+		<title>Sanchez.js Javascript Templates</title>
+		<script src="zepto.min.js" type="text/javascript"></script>
+		<script src="sanchez.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="sunburst.min.css"/>
+
 		<style>
+			body { overflow-y:scroll; }
 			#content { width:800px; margin:20px auto; }
-			#title { text-align:center; }
+			#head { text-align:center; background-image:url(sanchez.png);
+				background-position:center top; background-repeat:no-repeat;
+				width:200px; padding:70px 20px 10px;
+				margin:20px auto; }
+			#head > * { display:block; margin-bottom:10px; }
+			#head h1 { margin:0; margin-bottom:10px; }
+			#demo { text-align:center; }
+			#controls { margin:20px; }
+			#source { text-align:left; }
+			#target > * { margin-left:auto; margin-right:auto; }
+
+			pre { border:1px dashed white; overflow:auto;
+				background-color:black; color:#f8f8f8;
+				font:'Lucida Console','courier new',monospace; padding:0.5em; }
 		</style>
 	</head>
 	<body>
 		<div id="content">
-			<div id="title">
+			<div id="head">
 				<h1>Sanchez.js</h1>
-				<i>«mostacho grande, biblioteca pequeña»</i>
+				<i>«mostacho grande, librario pequeño»</i>
+				<a href="https://github.com/alxndrsn/sanchez.js">View source</a>
 			</div>
-			<a href="https://github.com/alxndrsn/sanchez.js">View source</a>
+			<div id="demo">
+				<div id="controls">
+					<button onclick="showTemplate('greeter', {name:'Bob'})" class="greeter">Show Greeting</button>
+					<button onclick="showTemplate('templating-fw', {name:'Mustache', features:'many', size:'5k'})" class="greeter">Show Mustache Info</button>
+					<button onclick="showTemplate('templating-fw', {name:'Handlebars', features:'many', size:'34k'})" class="greeter">Show Handlebars Info</button>
+					<button onclick="showTemplate('templating-fw', {name:'Sanchez', features:'only one!', size:'430b'})" class="greeter">Show Sanchez Info</button>
+				</div>
+				<div>
+					<div id="target">output will appear here</div>
+					<div id="source"></div>
+				</div>
+
+<script id="greeter" type="text/x-sanchez-template">
+	<p>Hello, {{name}}!</p>
+</script>
+
+<script id="templating-fw" type="text/x-sanchez-template">
+	<table>
+		<thead><tr><td>Attribute</td><td>Value</td></tr></thead>
+		<tbody>
+			<tr><td>Name</td><td>{{name}}</td></tr>
+			<tr><td>Features</td><td>{{features}}</td></tr>
+			<tr><td>Size (minified)</td><td>{{size}}</td></tr>
+		</tbody>
+	</table>
+</script>
+
+				<script type="text/javascript">
+					<!--
+					function showTemplate(template, data) {
+						var pre, code;
+						sanchez.replaceContent("#target", template, data);
+
+						pre = $("<pre>");
+						code = $("<code class='xml'>");
+						pre.append(code);
+						code.text(
+								'<script id="' + template + '" type="text/x-sanchez-template">' +
+								$("#" + template).html() +
+								"</script>\n\n" +
+								'\nsanchez.replaceContent("#target",\n' +
+								'\t\t' + template + ',\n' +
+								'\t\t' + JSON.stringify(data) + ');'
+						);
+						$("#source").html(pre);
+					}
+
+					$(function() {
+						showTemplate("greeter", {name:"Bob"});
+					});
+					-->
+				</script>
+			</div>
 		</div>
 	</body>
 </html>
