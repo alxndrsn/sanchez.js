@@ -1,0 +1,5 @@
+#!/bin/bash
+function getVersion {
+	echo `grep ^version= build.properties | cut -d= -f2`
+}
+

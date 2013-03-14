@@ -1,4 +1,6 @@
 #!/bin/bash
-/usr/bin/env uglifyjs src/sanchez.js > bin/sanchez.min.js
+source do/util
+VERSION=`getVersion`
+/usr/bin/env uglifyjs src/sanchez.js > bin/sanchez.$VERSION.min.js
 ls -al bin
 
