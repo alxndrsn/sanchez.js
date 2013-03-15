@@ -75,7 +75,7 @@
 				$("#" + template).html() +
 				"</script>\n\n" +
 				'\nsanchez.replaceContent("#target",\n' +
-				'\t\t' + template + ',\n' +
+				'\t\t"' + template + '",\n' +
 				'\t\t' + JSON.stringify(data) + ');'
 		);
 		$("#source").html(pre);
