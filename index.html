@@ -34,6 +34,13 @@
 				<a href="https://github.com/alxndrsn/sanchez.js">View source</a>
 			</div>
 			<div id="demo">
+				<div id="greeting-form">
+					<label>
+						Enter your name:
+						<input type="text" name="name"/>
+					</label>
+					<input type="submit" onclick="showTemplate('greeter', {name:$('input[name=name]').val()})" value="Show greeting"/>
+				</div>
 				<div id="controls"></div>
 				<div>
 					<div id="target">output will appear here</div>
@@ -43,7 +50,7 @@
 		</div>
 
 <script id="greeter" type="text/x-sanchez-template">
-	<p>Hello, {{name}}!</p>
+	<p>¡Hola, {{name}}!</p>
 </script>
 
 <script id="templating-fw" type="text/x-sanchez-template">
@@ -83,10 +90,6 @@
 
 	$(function() {
 		sanchez.append("#controls", "button", {
-				template:"greeter",
-				data:"{name:'Bob'}",
-				label:"Show Greeting"});
-		sanchez.append("#controls", "button", {
 				template:"templating-fw",
 				data:"{name:'Mustache', features:'many', size:'5k'}",
 				label:"Show Mustache Info"});
@@ -102,7 +105,7 @@
 				template:"button",
 				data:"{template:'button', data:'{}', label:'Don\\\'t click here!'}",
 				label:"Show button generator"});
-		showTemplate("greeter", {name:"Bob"});
+		showTemplate("greeter", {name:"pendejo"});
 	});
 	-->
 </script>
