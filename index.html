@@ -34,16 +34,13 @@
 				<a href="https://github.com/alxndrsn/sanchez.js">View source</a>
 			</div>
 			<div id="demo">
-				<div id="controls">
-					<button onclick="showTemplate('greeter', {name:'Bob'})" class="greeter">Show Greeting</button>
-					<button onclick="showTemplate('templating-fw', {name:'Mustache', features:'many', size:'5k'})" class="greeter">Show Mustache Info</button>
-					<button onclick="showTemplate('templating-fw', {name:'Handlebars', features:'many', size:'34k'})" class="greeter">Show Handlebars Info</button>
-					<button onclick="showTemplate('templating-fw', {name:'Sanchez', features:'only one!', size:'430b'})" class="greeter">Show Sanchez Info</button>
-				</div>
+				<div id="controls"></div>
 				<div>
 					<div id="target">output will appear here</div>
 					<div id="source"></div>
 				</div>
+			</div>
+		</div>
 
 <script id="greeter" type="text/x-sanchez-template">
 	<p>Hello, {{name}}!</p>
@@ -60,33 +57,55 @@
 	</table>
 </script>
 
-				<script type="text/javascript">
-					<!--
-					function showTemplate(template, data) {
-						var pre, code;
-						sanchez.replaceContent("#target", template, data);
+<script id="button" type="text/x-sanchez-template">
+	<button onclick="showTemplate('{{template}}', {{data}})">{{label}}</button>
+</script>
 
-						pre = $("<pre>");
-						code = $("<code class='xml'>");
-						pre.append(code);
-						code.text(
-								'<script id="' + template + '" type="text/x-sanchez-template">' +
-								$("#" + template).html() +
-								"</script>\n\n" +
-								'\nsanchez.replaceContent("#target",\n' +
-								'\t\t' + template + ',\n' +
-								'\t\t' + JSON.stringify(data) + ');'
-						);
-						$("#source").html(pre);
-					}
+<script type="text/javascript">
+	<!--
+	function showTemplate(template, data) {
+		var pre, code;
+		sanchez.replaceContent("#target", template, data);
 
-					$(function() {
-						showTemplate("greeter", {name:"Bob"});
-					});
-					-->
-				</script>
-			</div>
-		</div>
+		pre = $("<pre>");
+		code = $("<code class='xml'>");
+		pre.append(code);
+		code.text(
+				'<script id="' + template + '" type="text/x-sanchez-template">' +
+				$("#" + template).html() +
+				"</script>\n\n" +
+				'\nsanchez.replaceContent("#target",\n' +
+				'\t\t' + template + ',\n' +
+				'\t\t' + JSON.stringify(data) + ');'
+		);
+		$("#source").html(pre);
+	}
+
+	$(function() {
+		sanchez.append("#controls", "button", {
+				template:"greeter",
+				data:"{name:'Bob'}",
+				label:"Show Greeting"});
+		sanchez.append("#controls", "button", {
+				template:"templating-fw",
+				data:"{name:'Mustache', features:'many', size:'5k'}",
+				label:"Show Mustache Info"});
+		sanchez.append("#controls", "button", {
+				template:"templating-fw",
+				data:"{name:'Handlebars', features:'many', size:'34k'}",
+				label:"Show Handlebars Info"});
+		sanchez.append("#controls", "button", {
+				template:"templating-fw",
+				data:"{name:'Sanchez', features:'only one!', size:'430b'}",
+				label:"Show Sanchez Info"});
+		sanchez.append("#controls", "button", {
+				template:"button",
+				data:"{template:'button', data:'{}', label:'Don\\\'t click here!'}",
+				label:"Show button generator"});
+		showTemplate("greeter", {name:"Bob"});
+	});
+	-->
+</script>
 	</body>
 </html>
 
