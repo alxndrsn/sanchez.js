@@ -1,0 +1,36 @@
+#!/bin/bash
+set -e
+
+# Extract flags to pass to jslint
+EXTRA_FLAGS=""
+while [[ $1 == "--"* ]]; do
+	if [ -z "$EXTRA_FLAGS" ]; then
+		EXTRA_FLAGS=$1
+	else
+		EXTRA_FLAGS="$EXTRA_FLAGS $1"
+	fi
+	shift
+done
+
+echo "# Flags to pass directly to jslint: $EXTRA_FLAGS"
+echo "# Other args: $@"
+
+# run jslint
+if [ -z "$@" ]; then
+	FILES=src/*.js
+else
+	FILES="$@"
+fi
+
+echo "# Linting: $FILES"
+set +e
+jslint --white --sloppy --white --browser --plusplus --forin --undef $EXTRA_FLAGS \
+--predef $ \
+--predef jQuery \
+-- $FILES
+lintResult=$?
+set -e
+
+echo "# Finished jslint."
+exit $lintResult
+

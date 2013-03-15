@@ -1,6 +1,14 @@
 #!/bin/bash
+do/jslint
 source do/util
-VERSION=`getVersion`
-/usr/bin/env uglifyjs src/sanchez.js > bin/sanchez.$VERSION.min.js
+
+sanchezVersion=`getVersion`
+echo "# Got version as $sanchezVersion"
+
+targetFile=bin/sanchez.$sanchezVersion.min.js
+echo "# Uglifying javascript to $targetFile..."
+/usr/bin/env uglifyjs src/sanchez.js > $targetFile
+echo "# Uglification complete."
+
 ls -al bin
 
