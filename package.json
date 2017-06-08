@@ -1,0 +1,21 @@
+{
+  "name": "sanch",
+  "version": "1.0.0",
+  "description": "big moustache, tiny templates",
+  "main": "src/sanchez.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alxndrsn/sanchez.js.git"
+  },
+  "author": "alxndrsn",
+  "bugs": {
+    "url": "https://github.com/alxndrsn/sanchez.js/issues"
+  },
+  "homepage": "https://github.com/alxndrsn/sanchez.js#readme"
+}
