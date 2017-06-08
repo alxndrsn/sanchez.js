@@ -1,4 +1,4 @@
-sanchez = (function() {
+module.exports = sanchez = (function() {
 	var
 	jq = function(methodName, targetSelecter, templateName, replacement) {
 		$(targetSelecter)[methodName](template(templateName, replacement));
